@@ -1,0 +1,181 @@
+/* WatchInfo page style*/
+.bd-placeholder-img {
+  font-size: 1.125rem;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+@media (min-width: 768px) {
+  .bd-placeholder-img-lg {
+    font-size: 3.5rem;
+  }
+}
+
+#watchInfoTable{
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  width:80%;
+  margin-top: 3em;
+}
+
+.pageTitle{
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+#watchInfoTable{
+  font-size: 1.2rem;
+}
+table#watchInfoTable > tbody> tr >td{
+  padding-top: 1em;
+}
+
+.componentCard{
+  margin-bottom: 3rem!important;
+}
+
+.componentImage{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.imageDiv{
+  width: 35%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imageDiv > img{
+  height: 25rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.descrDiv{
+  width: 65%;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+}
+
+.descrDiv > table{
+  width: 100%;
+  margin: 2rem 1rem 2rem 2rem;
+}
+
+.nameInfo{
+  font-weight: bold;
+  width: 40%;
+  padding-bottom: 1rem;
+  vertical-align: top;
+  text-align: justify;
+}
+
+.descrInfo{
+  width: 60%;
+  padding-bottom: 1rem;
+  text-align: justify;
+  padding-left: 1rem;
+  vertical-align: top;
+}
+
+.descrDiv > table > tbody> tr:last-child > td{
+  padding-bottom: 0rem;
+}
+
+.buyDiv{
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+}
+
+.buyDiv > p{
+  font-size: large;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  margin-top: 2rem;
+}
+
+#buyButton{
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 0.5rem 3rem;
+  display: inline-block;
+  margin-bottom: 3rem;
+}
+/*End WatchInfo page style*/
+
+
+:root {
+  --jumbotron-padding-y: 3rem;
+}
+  
+.jumbotron {
+  padding-top: var(--jumbotron-padding-y);
+  padding-bottom: var(--jumbotron-padding-y);
+  margin-bottom: 0;
+  background-color: #fff;
+}
+@media (min-width: 768px) {
+  .jumbotron {
+    padding-top: calc(var(--jumbotron-padding-y) * 2);
+    padding-bottom: calc(var(--jumbotron-padding-y) * 2);
+  }
+}
+
+.textWatch{
+  text-align: justify;
+}
+
+img.imgAlbum {
+  width: 100%;
+  height: 25rem;
+  object-fit: cover;
+}
+
+.personalAreaDiv{
+  color: white;
+}
+
+.jumbotron p:last-child {
+  margin-bottom: 0;
+}
+
+.jumbotron-heading {
+  font-weight: 300;
+}
+
+.jumbotron .container {
+  max-width: 40rem;
+}
+
+
+group>.btn:not(:last-child):not(.dropdown-toggle) {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+footer {
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+}
+
+footer p {
+  margin-bottom: .25rem;
+  text-align: end;
+}
+
+footer > div > p > a{
+  color:#6c757d
+}
+
+.box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
+
+
+
+

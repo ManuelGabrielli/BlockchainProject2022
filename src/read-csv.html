@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Load Data</title>
+        <style>
+            .container{
+                width: 100%;
+                text-align: center;
+            }
+            .title {
+                margin-top:2em;
+                margin-bottom: 1em;
+                font-size: 2.5em;
+            }
+            form{
+                width: 100%;
+                margin-top: 2em;
+            }
+            form > button{
+                font-size: 2em;
+                padding: 0.4em  1em;
+            }
+            .message{
+                margin-bottom: 2em;
+                font-size: 1.5em;
+            }
+            #loadButton{
+                margin-bottom: 2em;
+                font-size: 2em;
+                padding: 0.4em  1em;
+            }
+            hr{
+                margin-top: 5em;
+            }
+        </style>        
+    </head>
+
+    <body>
+        <div class="container">
+            <h1 class="title">Select Watches File</h1>
+            <input id="watch_sel" type="file"></input>
+            <textarea id="watch_show" cols="90" rows="20"></textarea>
+            <br>
+            <h1 class="title">Select Components File</h1>
+            <input id="component_sel" type="file"></input>
+            <textarea id="component_show" cols="90" rows="20"></textarea>
+            
+            <hr/>
+            <h1 class="title"> Press the button to load data into the Blockchain </h1>
+            <br/>
+            <button id="loadButton" onclick="LoadData.load(watches, components);" hidden>LOAD</button>
+            
+            <p class="message" id="correct" hidden>
+                Elements correctly loaded!
+            </p>
+            <p class="message" id="notCorrect" hidden>
+                Something went wrong while loading!
+            </p>
+        </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="js/web3.min.js"></script>
+        <script src="js/truffle-contract.js"></script>
+        <script src="js/loadData.js"></script>
+        <script src="js/conversion.js"></script>
+
+        <script>
+
+            let input_w = document.querySelector('#watch_sel')
+            let textarea_w = document.querySelector('#watch_show')
+            let input_c = document.querySelector('#component_sel')
+            let textarea_c = document.querySelector('#component_show')
+            
+            const watch = {
+                idWatch: "0",
+                urlWatch: "000",
+                priceWatch: "0.0"
+            };
+            const component = {
+                idComponent: "0",
+                urlComponent: "000",
+                idParentWatch: "0"
+            };
+
+            const watches = [];
+            const components = [];
+
+            input_w.addEventListener('change', ()=> {
+
+                let files = input_w.files;
+
+                if(files.length == 0) return;
+
+                const file = files[0];
+                let reader = new FileReader();
+
+                reader.onload = (e) => {
+                    const file = e.target.result;
+                    const lines = file.split(/\r\n|\n/);
+                    for (i=0; i<lines.length-1;i++) {
+                        let infos = lines[i].split(",");
+                        let tmp_watch = {idWatch:infos[0], urlWatch:infos[1], priceWatch:infos[2]}
+                        watches.push(tmp_watch)
+                    }
+                    for(w in watches) {
+                    textarea_w.value += watches[w].idWatch;
+                    textarea_w.value += '\t';
+                    textarea_w.value += watches[w].urlWatch;
+                    textarea_w.value += '\n';
+                    textarea_w.value += watches[w].priceWatch;
+                    textarea_w.value += '\n';
+                }
+                };
+
+                reader.onerror = (e) => alert(e.target.error.name);
+                reader.readAsText(file)
+            });
+
+            input_c.addEventListener('change', ()=> {
+
+                let files = input_c.files;
+
+                if(files.length == 0) return;
+
+                const file = files[0];
+                let reader = new FileReader();
+
+                reader.onload = (e) => {
+                    const file = e.target.result;
+                    const lines = file.split(/\r\n|\n/);
+                    for (i=0; i<lines.length-1; i++) {
+                        let infos = lines[i].split(",");
+                        let tmp_component = {idComponent:infos[0], urlComponent:infos[1], idParentWatch:infos[2]}
+                        components.push(tmp_component);
+                    }
+                    for(c in components) {
+                        textarea_c.value += components[c].idComponent;
+                        textarea_c.value += '\t';
+                        textarea_c.value += components[c].urlComponent;
+                        textarea_c.value += '\t';
+                        textarea_c.value += components[c].idParentWatch;
+                        textarea_c.value += '\n';
+                    }
+                };
+
+                reader.onerror = (e) => alert(e.target.error.name);
+                reader.readAsText(file)
+
+            });
+        </script>
+
+    </body>
+</html>
