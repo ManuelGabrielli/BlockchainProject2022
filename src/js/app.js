@@ -110,7 +110,6 @@ App = {
                 return instance.tokenURI(i);
               }).then(function(tokenURI){
                 console.log("URI - "+ i  +": "+ tokenURI);
-
                 $.getJSON(tokenURI, function(data) {
                   //var watchesRow = $('#watchesRow');
                   //watchTemplate.empty(); //ad ogni inizio lo resetto
@@ -127,8 +126,10 @@ App = {
                     watchTemplate.find('#btn-buy').attr('data-id', i);
                     
                     watchesRow.append(watchTemplate.html());
-                    //watchTemplate.show();
+                    //watchTemplate.empty();
+
                 });
+
 
 
                 
