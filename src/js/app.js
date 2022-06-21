@@ -60,7 +60,7 @@ App = {
         App.contracts.SampleNFT.setProvider(App.web3Provider);
         
         return App.render(); //render the content of the page
-        App.listenForEvents();
+        //App.listenForEvents();
     });
   },
 
@@ -281,8 +281,8 @@ App = {
     },
 
     bindEvents: function(){
-      $(document).on('click', "#btn-buy", App.soldWatch);
-      $(document).on('click', 'btn-view', App.componentLoad);
+      $(document).on('click', ".btn-buy", App.soldWatch);
+      $(document).on('click', '.btn-view', App.componentLoad);
     },
 
     getPersonalId : function(){
