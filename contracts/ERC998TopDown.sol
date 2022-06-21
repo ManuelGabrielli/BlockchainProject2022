@@ -293,7 +293,9 @@ contract ERC998TopDown is ERC721, ERC998ERC721TopDown, ERC998ERC721TopDownEnumer
     }
 
     //function to buy the token
-    function buyToken(address _to, uint256 _tokenId) payable public{
+    function buyToken(uint256 _tokenId) payable public{
+        address _to = msg.sender;
+
         //require that the token is not already sold
         require(soldTokensId[_tokenId] == false, "Token is already sold");
 

@@ -1,14 +1,31 @@
-//const { watch } = require("fs");
-var childContract = '0x46c2dB95c8b6687d60d64b9d8C396d52d542cC7D';
-
 App = {
-    web3Provider: null,
+  web3Provider: null,
   contracts: {},
   account: '0x0',
+  childContract: '0x63369e9C4f2501CF90bafB9FbAC31b2B53Fc1fd9',
 
-  //initialize the app
-  init: function() {
-    return App.initWeb3();
+
+  init: async function() {
+    // Load pets.
+    /*$.getJSON('../pets.json', function(data) {
+      var petsRow = $('#petsRow');
+      var petTemplate = $('#petTemplate');
+
+      for (i = 0; i < data.length; i ++) {
+        petTemplate.find('.panel-title').text(data[i].name);
+        petTemplate.find('img').attr('src', data[i].picture);
+        petTemplate.find('.pet-breed').text(data[i].breed);
+        petTemplate.find('.pet-age').text(data[i].age);
+        petTemplate.find('.pet-location').text(data[i].location);
+        petTemplate.find('.btn-adopt').attr('data-id', data[i].id);
+
+        petsRow.append(petTemplate.html());
+      }
+    });
+
+    $.csv.toArray('../../mint_contracts/watches_data.csv');*/
+
+    return await App.initWeb3();
   },
 
   //connection of the client to the blockchain
@@ -82,7 +99,7 @@ App = {
             // document.getElementById("personal_area").onclick = function(){
               
             // }
-            App.homepageLoad();
+            //App.homepageLoad();
             App.componentLoad();
             //App.getPersonalId();
             //App.personalAreaLoad();
@@ -224,7 +241,7 @@ App = {
       (async() => {
         App.contracts.ERC998TopDown.deployed().then(function(instance){
           console.log("A");
-          return instance.getChildTokensIndexes(watchId, childContract); //devo capire quale indirizzo inserire
+          return instance.getChildTokensIndexes(watchId, App.childContract); //devo capire quale indirizzo inserire
         }).then(function(ris){
           console.log("B");
           console.log("ris[0] : " + ris);

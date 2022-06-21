@@ -131,10 +131,10 @@ load: function(watches, components) {
 
   
 
-  /*'0x86e3318cE32fC54bc1f2241eA3eDB1A05959CFDA'*/
 
-  LoadData.contracts.ERC998TopDown.deployed().then(function(instance){
-    return instance.getChildTokensIndexes(1, '0x46c2dB95c8b6687d60d64b9d8C396d52d542cC7D');
+/*LoadData.contracts.ERC998TopDown.deployed().then(function(instance){
+  return instance.getChildTokensIndexes(1, '0x63369e9C4f2501CF90bafB9FbAC31b2B53Fc1fd9');
+
   }).then(function(ris){
     LoadData.contracts.SampleNFT.deployed().then(function(ins){
       return ins.tokenURI(parseInt(ris[0]));
