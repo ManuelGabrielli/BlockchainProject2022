@@ -16,7 +16,7 @@
       <a href="homepage.html" class="navbar-brand d-flex align-items-center">
         <strong>Album Watch</strong>
       </a>
-      <a href="personal_area.html" class="btn btn-outline-light" role="button">
+      <a  href="personal_area.html" id="personal_area" class="btn btn-outline-light" role="button">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-watch" viewBox="0 0 16 16">
           <path d="M8.5 5a.5.5 0 0 0-1 0v2.5H6a.5.5 0 0 0 0 1h2a.5.5 0 0 0 .5-.5V5z"/>
           <path d="M5.667 16C4.747 16 4 15.254 4 14.333v-1.86A5.985 5.985 0 0 1 2 8c0-1.777.772-3.374 2-4.472V1.667C4 .747 4.746 0 5.667 0h4.666C11.253 0 12 .746 12 1.667v1.86a5.99 5.99 0 0 1 1.918 3.48.502.502 0 0 1 .582.493v1a.5.5 0 0 1-.582.493A5.99 5.99 0 0 1 12 12.473v1.86c0 .92-.746 1.667-1.667 1.667H5.667zM13 8A5 5 0 1 0 3 8a5 5 0 0 0 10 0z"/>
@@ -30,6 +30,7 @@
 <main>
 
   <section class="py-5 text-center container" >
+    <div id="single-watch-info">
     <div class="row py-lg-5">
       <div class="col-lg-6 col-md-8 mx-auto">
         <h1 class="pageTitle">WATCH INFORMATION</h1>
@@ -42,66 +43,27 @@
             <th>PRIZE</th>
           </tr>
           <tr>
-            <td>27485</td>
-            <td>Datejust</td>
-            <td>Rolex</td>
-            <td>40000$</td>
+            <td id="single-watch-id"></td>
+            <td id="single-watch-name"></td>
+            <td id="single-watch-brand"></td>
+            <td id="single-watch-price"></td>
           </tr>
         </table>
       </div>
     </div>
+  </div>
   </section>
 
   <div class="py-5 bg-light">
     <div class="container">
-
-      <div class="row g-3">
-        <div class="card mb-3 componentCard">
-          <div class="row g-0">
-            <div class="col-md-4 imageDiv">
-              <img src="https://ipfs.infura.io/ipfs/QmSpxdVYwoDR7QSgwBTkHSWY9SJHdw8YFHijaCkWew7hWv" class="rounded-start componentImage" alt="Watch Face">
-            </div>
-            <div class="col-md-8 descrDiv">
-              <table>
-                <tr>
-                  <td class="nameInfo">ID:</td>
-                  <td class="descrInfo">34859</td>
-                </tr>
-                <tr>
-                  <td class="nameInfo">NAME:</td>
-                  <td class="descrInfo">Rolex Watchstrap</td>
-                </tr>
-                <tr>
-                  <td class="nameInfo">BRAND:</td>
-                  <td class="descrInfo">Rolex</td>
-                </tr>
-                <tr>
-                  <td class="nameInfo">PRODUCER:</td>
-                  <td class="descrInfo">Pinco pallino</td>
-                </tr>
-                <tr>
-                  <td class="nameInfo">PRODUCTION DATE AND TIME:</td>
-                  <td class="descrInfo">11/3/2022, 9:05am</td>
-                </tr>
-                <tr>
-                  <td class="nameInfo">MATERIAL:</td>
-                  <td class="descrInfo">Leather</td>
-                </tr>
-                <tr>
-                  <td class="nameInfo">COLOR:</td>
-                  <td class="descrInfo">Brown</td>
-                </tr>
-                <tr>
-                  <td class="nameInfo">DESCRIPTION:</td>
-                  <td class="descrInfo">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt.</td>
-                </tr>
-              </table>
-            </div>
-          </div>
-        </div>
+      <div id="loader">
+        <p class="text-center">Loading...</p>
+      </div>
+      <div id="componentsRow" class="row">
+        <!--watchs load here-->
       </div>
 
-      <div class="row g-3">
+      <!-- <div class="row g-3">
         <div class="card mb-3 componentCard">
           <div class="row g-0">
             <div class="col-md-4 imageDiv">
@@ -145,8 +107,56 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
+
+    <div id="componentTemplate">
+      <div class="row g-3">
+        <div class="card mb-3 componentCard">
+          <div class="row g-0">
+            <div class="col-md-4 imageDiv">
+              <img id="component-image" src="https://ipfs.infura.io/ipfs/QmSpxdVYwoDR7QSgwBTkHSWY9SJHdw8YFHijaCkWew7hWv" class="rounded-start componentImage" alt="Watch Face">
+            </div>
+            <div class="col-md-8 descrDiv">
+              <table>
+                <tr>
+                  <td class="nameInfo">ID:</td>
+                  <td class="descrInfo" id="component-id"></td>
+                </tr>
+                <tr>
+                  <td class="nameInfo">NAME:</td>
+                  <td class="descrInfo" id="component-name"></td>
+                </tr>
+                <tr>
+                  <td class="nameInfo">BRAND:</td>
+                  <td class="descrInfo" id="component-brand"></td>
+                </tr>
+                <tr>
+                  <td class="nameInfo">MANUFACTURER:</td>
+                  <td class="descrInfo" id="component-manufacturer"></td>
+                </tr>
+                <tr>
+                  <td class="nameInfo">PRODUCTION DATE AND TIME:</td>
+                  <td class="descrInfo" id="component-date"></td>
+                </tr>
+                <tr>
+                  <td class="nameInfo">MATERIAL:</td>
+                  <td class="descrInfo" id="component-material"></td>
+                </tr>
+                <!-- <tr>
+                  <td class="nameInfo">COLOR:</td>
+                  <td class="descrInfo">Brown</td>
+                </tr> -->
+                <tr>
+                  <td class="nameInfo">DESCRIPTION:</td>
+                  <td class="descrInfo" id="component-description"></td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
 
     <div class="buyDiv">
       <p>Click the button below if you want to buy the watch.</p>
@@ -165,6 +175,14 @@
     </p>
     </div>
 </footer>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js/bootstrap.min.js"></script>
+<script src="js/web3.min.js"></script>
+<script src="js/truffle-contract.js"></script>
+<script src="js/app.js"></script>
 
 </body>
 </html>

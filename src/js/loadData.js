@@ -126,20 +126,22 @@ load: function(watches, components) {
   } catch (error) {
     console.error(error);
     //show message of error
-    p_not_correct.show()
+    p_not_correct.show();
   }
 
   
 
-  /*LoadData.contracts.ERC998TopDown.deployed().then(function(instance){
-    return instance.getChildTokensIndexes(1, '0x63369e9C4f2501CF90bafB9FbAC31b2B53Fc1fd9');
+
+/*LoadData.contracts.ERC998TopDown.deployed().then(function(instance){
+  return instance.getChildTokensIndexes(1, '0x63369e9C4f2501CF90bafB9FbAC31b2B53Fc1fd9');
+
   }).then(function(ris){
     LoadData.contracts.SampleNFT.deployed().then(function(ins){
       return ins.tokenURI(parseInt(ris[0]));
     }).then(function(uri){
       console.log(uri);
     });;
-  });;*/
+  });;
 
   //id ultimo padre
   /*(async () => {
