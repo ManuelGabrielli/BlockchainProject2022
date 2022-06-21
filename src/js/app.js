@@ -85,6 +85,7 @@ App = {
             App.homepageLoad();
             App.componentLoad();
             //App.getPersonalId();
+            //App.personalAreaLoad();
 
 
           } catch (e) {
@@ -204,6 +205,8 @@ App = {
       var componentsRow = $("#componentsRow");
       var watchId = 1; //a funzione si potrebbe passare l'indice dell'orologio
       //qui carico le informazioni dell'orologio nell'header
+      //event.preventDefault();
+      //var watchId = parseInt($(event.target).data('viewId'));
       App.contracts.ERC998TopDown.deployed().then(function(instance){
         return instance.tokenURI(watchId);
       }).then(function(tokenURI){
@@ -262,6 +265,7 @@ App = {
 
     bindEvents: function(){
       $(document).on('click', "#btn-buy", App.soldWatch);
+      $(document).on('click', 'btn-view', App.componentLoad);
     },
 
     getPersonalId : function(){
