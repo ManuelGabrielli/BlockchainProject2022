@@ -1,13 +1,10 @@
-//var csv = require('jquery-csv');
-var csv = require('jquery-csv')
-
 App = {
   web3Provider: null,
   contracts: {},
 
   init: async function() {
     // Load pets.
-    $.getJSON('../pets.json', function(data) {
+    /*$.getJSON('../pets.json', function(data) {
       var petsRow = $('#petsRow');
       var petTemplate = $('#petTemplate');
 
@@ -23,7 +20,7 @@ App = {
       }
     });
 
-    $.csv.toArray('../../mint_contracts/watches_data.csv');
+    $.csv.toArray('../../mint_contracts/watches_data.csv');*/
 
     return await App.initWeb3();
   },
