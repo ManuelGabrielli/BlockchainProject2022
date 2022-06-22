@@ -94,7 +94,7 @@ load: function(watches, components) {
         await LoadData.contracts.SampleNFT.deployed().then(function(instance){
           return instance.mint721(components[con].urlComponent, {from: LoadData.account})
         }).then(function(ris){
-          console.log("Componet "+components[con].idComponent+" minted");
+          console.log("Component "+components[con].idComponent+" minted");
         });
       })();
     }
@@ -141,7 +141,7 @@ load: function(watches, components) {
     }).then(function(uri){
       console.log(uri);
     });;
-  });;
+  });;*/
 
   //id ultimo padre
   /*(async () => {
