@@ -300,7 +300,7 @@ contract ERC998TopDown is ERC721, ERC998ERC721TopDown, ERC998ERC721TopDownEnumer
         require(soldTokensId[_tokenId] == false, "Token is already sold");
 
         //require amount of ether
-        require(msg.value == tokenPrices[_tokenId]*10**18, "Not enough ether send");
+        require(msg.value == tokenPrices[_tokenId], "Not enough ether send");
 
         safeTransferFrom(tokenIdToTokenOwner[_tokenId], _to, _tokenId);
 
@@ -311,6 +311,11 @@ contract ERC998TopDown is ERC721, ERC998ERC721TopDown, ERC998ERC721TopDownEnumer
         uint timestamp = block.timestamp;
         //Math.floor(new Date().getTime() / 1000);
         tokenIdToOwnerships[_tokenId].push(Ownership(_to, timestamp, tokenPrices[_tokenId]));
+    }
+
+    //function to know if the token is already sold
+    function isTokenSold(uint256 _tokenId) external view returns (bool){
+        return soldTokensId[_tokenId];
     }
 
     ////////////////////////////////////////////////////////

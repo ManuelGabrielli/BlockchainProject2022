@@ -99,8 +99,8 @@ App = {
             // document.getElementById("personal_area").onclick = function(){
               
             // }
-            //App.homepageLoad();
-            App.componentLoad();
+            App.homepageLoad();
+            //App.componentLoad();
             //App.getPersonalId();
 
 
