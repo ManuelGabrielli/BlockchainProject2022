@@ -13,7 +13,7 @@
   }
 }
 
-#watchInfoTable{
+#watchInfoTable, #traceInfoTable{
   margin-left: auto;
   margin-right: auto;
   text-align: center;
@@ -26,10 +26,13 @@
   font-weight: bold;
 }
 
-#watchInfoTable{
+#watchInfoTable, #traceInfoTable{
   font-size: 1.2rem;
 }
 table#watchInfoTable > tbody> tr >td{
+  padding-top: 1em;
+}
+table#traceInfoTable > tbody> tr >td{
   padding-top: 1em;
 }
 
@@ -94,7 +97,10 @@ table#watchInfoTable > tbody> tr >td{
   align-items: center; 
 }
 
-.buyDiv > p{
+.buyDivText > p{
+  display: flex;
+  justify-content: center;
+  align-items: center; 
   font-size: large;
   font-weight: bold;
   margin-bottom: 1.5rem;

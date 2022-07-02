@@ -35,7 +35,7 @@
     <div class="row py-lg-5">
       <div class="col-lg-6 col-md-8 mx-auto">
         <h1 class="pageTitle">WATCH INFORMATION</h1>
-        <p class="lead text-muted">Here you can find all the information regarding the production of the individual components of the watch.</p>
+        <p class="lead text-muted">Here you can find all the information regarding the production of the individual components and the traceability of the watch.</p>
         <p id="showWatchId"></p>
         <p id="accountAddress"></p>
         <table id="watchInfoTable">
@@ -43,7 +43,7 @@
             <th>ID</th>
             <th>NAME</th>
             <th>BRAND</th>
-            <th>PRIZE</th>
+            <th>PRICE</th>
           </tr>
           <tr>
             <td id="single-watch-id"></td>
@@ -52,6 +52,24 @@
             <td id="single-watch-price"></td>
           </tr>
         </table>
+
+          <table id="traceInfoTable">
+            <tr>
+              <th>LAST OWNER</th>
+              <th>TIME</th>
+              <th>PRICE</th>
+            </tr>
+            <tr>
+              <td>owner 1</td>
+              <td>20/20/20, 20:00</td>
+              <td>50</td>
+            </tr>
+            <tr>
+              <td>owner 2</td>
+              <td>20/20/20, 20:00</td>
+              <td>50</td>
+            </tr>
+          </table>
       </div>
     </div>
   </div>
@@ -116,11 +134,11 @@
       </div>
       </div>
 
-    <div class="buyDiv">
-      <p>Click the button below if you want to buy the watch.</p>
+    <div class="buyDivText" >
+      <p data-watchid="0">Click the button below if you want to buy the watch.</p>
     </div>
     <div class="buyDiv" id="watch-info-button">
-      <button data-buyid="0" type="button" class="btn btn-outline-dark btn-buy">BUY</button>
+      <button data-buyid="0" type="button" class="btn btn-outline-dark btn-buy">BUY</a>
     </div>
     
   </div>

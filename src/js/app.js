@@ -2,7 +2,7 @@ App = {
   web3Provider: null,
   contracts: {},
   account: '0x0',
-  childContract: '0x1A731FA2a8f2Fe76Ba21379541679837A8a612AE',
+  childContract: '0xFf8a252c50DA028bA5eDf8B5b280100abc31e833',
   //prevWatchId : '0',
 
   init: async function() {
@@ -81,12 +81,12 @@ App = {
               
             // }
             App.homepageLoad();
+            App.personalAreaLoad();
             App.componentLoad();
+            App.markSold();
             //App.saveId();
             //App.getPersonalId();
-            //App.personalAreaLoad();
-
-
+            
           } catch (e) {
               // Deal with the fact the chain failed
           }
@@ -132,7 +132,7 @@ App = {
                     watchesRow.append(watchTemplate.html());
                     //watchTemplate.empty();
 
-                });
+                }); //Json read
               });
             $('#loader').hide();
           })();
@@ -146,19 +146,20 @@ App = {
   personalAreaLoad : function(){
     var personalRow = $("#personalRow");
     (async () => {
-      await App.constract.ERC998TopDown.deployed().then(function(instance){
+      await App.contracts.ERC998TopDown.deployed().then(function(instance){
+        return instance.tokenCount();
       }).then(function(tokenCount){
         for(i = 1; i <= tokenCount; i++){
           (async () => {
             var watch = i;
             var personalTemplate = $('#personalTemplate');
-            App.contracts.ERC998TopDown.deployed.then(function(instance){
+            App.contracts.ERC998TopDown.deployed().then(function(instance){
               return instance.ownerOf(watch);
             }).then(function(ownerOf){
               //se è il proprietario del token
               if(ownerOf == App.account){
+                
                 App.contracts.ERC998TopDown.deployed().then(function(instance){
-                  //console.log("Instance: "+ watch);
                   return instance.tokenURI(watch);
                 }).then(function(tokenURI){
                   //console.log("URI - "+ watch  +": "+ tokenURI);
@@ -175,7 +176,7 @@ App = {
                       personalTemplate.find('#personal-watch-brand').text(Json.Brand);
                       personalTemplate.find('#personal-watch-description').text(Json.Description);
                       personalTemplate.find('#personal-watch-price').text(Json.Price);
-                      personalTemplate.find('.btn-view').attr('data-viewId', watch);                        
+                      personalTemplate.find('.btn-view').attr('data-viewid', watch);                        
                       //console.log("a - " +attached);
                       personalRow.append(personalTemplate.html());
                       //watchTemplate.empty();
@@ -199,10 +200,6 @@ App = {
 
   componentLoad : function(){
     var componentsRow = $("#componentsRow");
-    
-    //console.log("prevId : " + App.prevWatchId);
-    //App.prevWatchId = localStorage.getItem('myId');
-    //console.log("prevId : " + App.prevWatchId);
     var watchId = localStorage.getItem('myId'); //assegno alla variabile che uso qui dentro watchId quella che mi sono salvata
     //watchId = 1;
     console.log("actual id get from local storage: " + watchId);
@@ -210,7 +207,7 @@ App = {
     App.contracts.ERC998TopDown.deployed().then(function(instance){
       return instance.tokenURI(watchId);
     }).then(function(tokenURI){
-      console.log('scrittura su pagina da json');
+      //console.log('scrittura su pagina da json');
       $.getJSON(tokenURI, function(data) {
         var Json = JSON.parse(data);
         $('#watchInfoTable').find('#single-watch-id').html(watchId);
@@ -219,7 +216,19 @@ App = {
         $('#watchInfoTable').find('#single-watch-price').html(Json.Price);
         //console.log(Json);
       });
-    });;
+
+      // return instance.Ownership();
+      // }).then(function(ownership){
+      //   ownership
+      // })
+
+      //qui si può creare un ciclo per vedere la struttura di Ownership del contratto
+      var owner = "owner";
+      var time = "time";
+      var price= "price";
+      //si aggiunge poi alla tabella le righe con le informazioni
+      $('#traceInfoTable').append('<tr><td>' + owner + '</td><td>' + time + '</td><td>'+ price +'</td></tr>');
+    });
 
     //qui vado a caricare tutti i componenti dell'orologio
     (async() => {
@@ -255,13 +264,14 @@ App = {
 
               componentsRow.append(componentTemplate.html());
               
-
             }); //getJson
           }); //childTokenURI
         })();
         } //for
       });
       $('#watch-info-button').find('.btn-buy').attr('data-buyid', watchId);
+      $('.buyDivText > p').attr('data-watchid', watchId);
+      //$('#watch-info-button').find('button').text('Sold').attr('disabled', true);
     })();
     
     //localStorage.clear();
@@ -272,49 +282,35 @@ App = {
     //$(document).on('click', '#btn-view', this);
   },
 
-  saveId : function(myIdvalue){
-    //var myIdvalue = object.querySelector('.btn-view').getAttribute('data-viewid').text;
-    console.log("myIdValue: " + myIdvalue);
-    localStorage.setItem('myId', myIdValue);
-    var w = localStorage.getItem('myId');
-    //App.prevWatchId = localStorage.getItem('myId');
-    //console.log(localStorage.getItem('myId'));
-    console.log("prev watch in save ID: " + w);
-  },
-
-  getPersonalId : function(){
-
-    var link = $("#personal_area").attr("href");
-    console.log("personal area link:" + link);
-    var id_account = '/' + App.account;
-    console.log(id_account);
-    var link = $("#personal_area").attr("href");
-    link = link + id_account;
-    $("#personal_area").attr("href").text(link);
-    console.log("personal area link2:" + link);
-  },
-
   markSold: function(){
 
-    //questa funzione dovrebbe permettermi di marcare l'orologio come venduto
+    (async () => {
+      await App.contracts.ERC998TopDown.deployed().then(function(instance) {
+        return instance.tokenCount();
+      }).then(function(tokenCount){
+        for(i = 1; i <= tokenCount; i++){
+          (async () => {
+            var watch = i;
+            App.contracts.ERC998TopDown.deployed().then(function(instance) {
+              return instance.isTokenSold(watch);
+            }).then(function(isTokenSold) {
+              var example = isTokenSold;
+              example = true;
+              //nel caso in cui il token è stato venduto, disabilito il bottone con id relativo a quello dell'orologio
+              if(example){
+                var watchid=1; //sotto basta mettere watch
+                $(".buyDiv").find(`[data-buyid='${watchid}']`).text('Sold').attr('disabled', true);
+                $(".buyDivText").find(`[data-watchid='${watchid}']`).text("Watch is already sold");
+              }
+            }).catch(function(err) {
+              console.log(err.message);
+            });
 
-    // var watchInstance;
-
-    // (async () => {
-    //   await App.contracts.ERC998TopDown.deployed().then(function(instance){
-    //     return instance.soldTokensId();
-    //   }).then(function(soldTokenId){
-
-    //     //scorro lista dei token venduti, così se il token risulta non venduto, lo setto a venduto
-    //     for(i = 1; i < soldTokenId.size; i++){
-
-    //     }
-    //   })
-
-
-    // })();
-    console.log("watch sold to account " + App.account);
-
+          })();
+        }
+      });
+    })();
+    //console.log("watch sold to account " + App.account);
   },
 
   soldWatch: function(event){
