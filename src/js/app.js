@@ -2,7 +2,7 @@ App = {
   web3Provider: null,
   contracts: {},
   account: '0x0',
-  childContract: '0xFf8a252c50DA028bA5eDf8B5b280100abc31e833',
+  childContract: '0x0BB1b99a1971401B1742502B80c69C4448Ed395a',
   //prevWatchId : '0',
 
   init: async function() {
@@ -228,6 +228,25 @@ App = {
       var price= "price";
       //si aggiunge poi alla tabella le righe con le informazioni
       $('#traceInfoTable').append('<tr><td>' + owner + '</td><td>' + time + '</td><td>'+ price +'</td></tr>');
+      
+//       return instance.getOwnershipCount(watchId);
+//     }).then(function(ownershipCount){
+//       console.log("ownership count");
+//       for(o = 0; o <ownershipCount; o++){
+// //     (async () => {
+//       App.contracts.ERC998TopDown.deployed().then(function(instance){
+//         console.log("prev owner: " + o );
+//         return instance.getOwnershipCount(watchId, o);
+//       }).then(function(ownerList){
+//         var ownerAddress = ownerList[0];
+//         var purchaseTime = ownerList[1];
+//         var purchasePrice = ownerList[2];
+//         $('#traceInfoTable').append('<tr><td>' + ownerAddress + '</td><td>' + purchaseTime + '</td><td>'+ purchasePrice +'</td></tr>');
+//       });
+
+// //     })();
+        
+//       }
     });
 
     //qui vado a caricare tutti i componenti dell'orologio

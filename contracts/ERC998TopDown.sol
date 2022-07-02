@@ -318,6 +318,17 @@ contract ERC998TopDown is ERC721, ERC998ERC721TopDown, ERC998ERC721TopDownEnumer
         return soldTokensId[_tokenId];
     }
 
+    //functions to get count of Ownerships, needed because Solidity doesn't support returning an array of structs yet
+    function getOwnershipCount(uint256 _tokenId) external view returns (uint) {
+        return tokenIdToOwnerships[_tokenId].length;
+    }
+
+    function getOwnershipsList(uint256 _tokenId, uint index) external view returns (address, uint256, uint256) {
+        Ownership storage own = tokenIdToOwnerships[_tokenId][index];
+
+        return (own.ownerAddress, own.purchaseTime, own.purchasePrice);
+    }
+
     ////////////////////////////////////////////////////////
     // ERC998ERC721 and ERC998ERC721Enumerable implementation
     ////////////////////////////////////////////////////////
