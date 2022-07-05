@@ -2,7 +2,7 @@ App = {
   web3Provider: null,
   contracts: {},
   account: '0x0',
-  childContract: '0x1A731FA2a8f2Fe76Ba21379541679837A8a612AE',
+  childContract: '0x25b4cd513E5Df72f424ec19e0550ABb17cB08213',
   //prevWatchId : '0',
 
   init: async function() {
