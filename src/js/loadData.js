@@ -2,6 +2,7 @@ LoadData = {
   web3Provider: null,
   contracts: {},
   account: '0x0',
+  shopAddress: "0xca8b3b6bd825A6845e5D927545e3dfeaD560B590",
 
   //initialize the app
   init: function() {
@@ -128,30 +129,6 @@ load: function(watches, components) {
     //show message of error
     p_not_correct.show();
   }
-
-  
-
-
-/*LoadData.contracts.ERC998TopDown.deployed().then(function(instance){
-  return instance.getChildTokensIndexes(1, '0x63369e9C4f2501CF90bafB9FbAC31b2B53Fc1fd9');
-
-  }).then(function(ris){
-    LoadData.contracts.SampleNFT.deployed().then(function(ins){
-      return ins.tokenURI(parseInt(ris[0]));
-    }).then(function(uri){
-      console.log(uri);
-    });;
-  });;*/
-
-  //id ultimo padre
-  /*(async () => {
-    await LoadData.contracts.ERC998TopDown.deployed().then(function(instance){
-      return instance.tokenCount();
-    }).then(function(r){
-      console.log("NUmero:"+r);
-    });
-  })();*/
-   
 }
 
 };

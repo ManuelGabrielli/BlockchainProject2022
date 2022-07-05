@@ -64,10 +64,12 @@
                 <p id="watch-price" class="price-watch"></p>
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">
-                    <a  data-viewid="0" id="btn-view" onclick="saveId(this.getAttribute('data-viewid'));" href="watchInfo.html" type="button" class="btn btn-sm btn-outline-secondary btn-view">View</a>
+                    <a data-viewid="0" id="btn-view" onclick="saveId(this.getAttribute('data-viewid'));" href="watchInfo.html" type="button" class="btn btn-sm btn-outline-secondary btn-view">View</a>
                     <!--il bottone view deve andare a vedere i dettagli del singolo orologio, passando l'id del padre-->
-                  </div>   
-                  <a data-buyid="0" type="button" class="btn btn-sm btn-outline-secondary btn-buy" style="float: right;">Buy</a>                 
+                  </div>
+                  <div class="buyDiv">   
+                  <button data-buyid="0" type="button" class="btn btn-sm btn-outline-secondary btn-buy" style="float: right;">Buy</button>                 
+                  </div>  
                 </div>
               </div>
             </div>
@@ -99,12 +101,12 @@
 
       function saveId(myIdvalue){
       //var myIdvalue = object.querySelector('.btn-view').getAttribute('data-viewid').text;
-      console.log("myIdValue: " + myIdvalue);
+      //console.log("myIdValue: " + myIdvalue);
       localStorage.setItem('myId', myIdvalue);
       var w = localStorage.getItem('myId');
       //App.prevWatchId = localStorage.getItem('myId');
       //console.log(localStorage.getItem('myId'));
-      console.log("prev watch in save ID: " + w);
+      //console.log("prev watch in save ID: " + w);
     }
     </script>
   </body>

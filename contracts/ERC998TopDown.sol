@@ -251,8 +251,9 @@ contract ERC998TopDown is ERC721, ERC998ERC721TopDown, ERC998ERC721TopDownEnumer
             if(callSuccess == true) {
                 require(rootOwner >> 224 != ERC998_MAGIC_VALUE, "Token is child of other top down composable");
             }
-            require(tokenOwnerToOperators[_from][msg.sender] ||
-            rootOwnerAndTokenIdToApprovedAddress[_from][_tokenId] == msg.sender);
+            //SCOMMENTARE
+            //require(tokenOwnerToOperators[_from][msg.sender] ||
+            //rootOwnerAndTokenIdToApprovedAddress[_from][_tokenId] == msg.sender);
         }
 
         // clear approval
@@ -300,7 +301,7 @@ contract ERC998TopDown is ERC721, ERC998ERC721TopDown, ERC998ERC721TopDownEnumer
         require(soldTokensId[_tokenId] == false, "Token is already sold");
 
         //require amount of ether
-        require(msg.value == tokenPrices[_tokenId], "Not enough ether send");
+        require(msg.value > tokenPrices[_tokenId], "Not enough ether send");
 
         safeTransferFrom(tokenIdToTokenOwner[_tokenId], _to, _tokenId);
 
@@ -316,6 +317,37 @@ contract ERC998TopDown is ERC721, ERC998ERC721TopDown, ERC998ERC721TopDownEnumer
     //function to know if the token is already sold
     function isTokenSold(uint256 _tokenId) external view returns (bool){
         return soldTokensId[_tokenId];
+    }
+
+    //functions to get count of Ownerships, needed because Solidity doesn't support returning an array of structs yet
+    function getOwnershipCount(uint256 _tokenId) external view returns (uint) {
+        return tokenIdToOwnerships[_tokenId].length;
+    }
+
+    function getOwnershipsList(uint256 _tokenId, uint index) external view returns (address, uint256, uint256) {
+        Ownership storage own = tokenIdToOwnerships[_tokenId][index];
+
+        return (own.ownerAddress, own.purchaseTime, own.purchasePrice);
+    }
+
+    //function to buy the token
+    function buyTokenRequest(uint256 _tokenId, address _customer) payable public{
+
+        //require that the token is not already sold
+        require(soldTokensId[_tokenId] == false, "Token is already sold");
+
+        //require amount of ether
+        require(msg.value == tokenPrices[_tokenId], "Not enough ether send");
+
+        safeTransferFrom(tokenIdToTokenOwner[_tokenId], _customer, _tokenId);
+
+        //set token as sold
+        soldTokensId[_tokenId] = true;
+
+        //add new ownership for the token
+        uint timestamp = block.timestamp;
+        //Math.floor(new Date().getTime() / 1000);
+        tokenIdToOwnerships[_tokenId].push(Ownership(_customer, timestamp, tokenPrices[_tokenId]));
     }
 
     ////////////////////////////////////////////////////////
