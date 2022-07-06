@@ -2,7 +2,7 @@ App = {
   web3Provider: null,
   contracts: {},
   account: '0x0',
-  childContract: '0xe858DD20d33597C16EcC8871CB131179C6632292',
+  childContract: '0x91464C1EBC180675cDaBB8e22449D8d9E0A3Ffad',
   //prevWatchId : '0',
 
   init: async function() {
@@ -83,7 +83,7 @@ App = {
             App.homepageLoad();
             App.personalAreaLoad();
             App.componentLoad();
-            //App.markSold();
+            App.markSold();
             //App.saveId();
             //App.getPersonalId();
             
@@ -104,22 +104,16 @@ App = {
         await App.contracts.ERC998TopDown.deployed().then(function(instance){
           return instance.tokenCount();
         }).then(function(tokenCount){
-          var attached = "";
           for(i = 1; i <= tokenCount; i++){
             (async () => {
             var watchTemplate = $('#watchTemplate');
             var watch = i;
               App.contracts.ERC998TopDown.deployed().then(function(instance){
-                //console.log("Instance: "+ watch);
                 return instance.tokenURI(watch);
               }).then(function(tokenURI){
-                //console.log("URI - "+ watch  +": "+ tokenURI);
                 $.getJSON(tokenURI, function(data) {
-                  
-                    //console.log(data);
                     var Json = JSON.parse(data);
-                    //console.log("watch id "+ watch + " " + Json.Name);
-                    //attached+= " " + Json.Name + ":";
+
                     watchTemplate.find('#watch-name').text(Json.Name);
                     watchTemplate.find('#watch-image').attr('src', Json.Image);
                     watchTemplate.find('#watch-brand').text(Json.Brand);
@@ -202,9 +196,10 @@ App = {
     var componentsRow = $("#componentsRow");
     var watchId = localStorage.getItem('myId'); //assegno alla variabile che uso qui dentro watchId quella che mi sono salvata
     //watchId = 1;
-    console.log("actual id get from local storage: " + watchId);
-    console.log("local storage: " + localStorage.getItem('myId'));
-    App.contracts.ERC998TopDown.deployed().then(function(instance){
+    //console.log("actual id get from local storage: " + watchId);
+    //console.log("local storage: " + localStorage.getItem('myId'));
+    (async() => {
+    await App.contracts.ERC998TopDown.deployed().then(function(instance){
       return instance.tokenURI(watchId);
     }).then(function(tokenURI){
       //console.log('scrittura su pagina da json');
@@ -215,39 +210,37 @@ App = {
         $('#watchInfoTable').find('#single-watch-brand').html(Json.Brand);
         $('#watchInfoTable').find('#single-watch-price').html(Json.Price);
         //console.log(Json);
+
+        App.contracts.ERC998TopDown.deployed().then(function(instance){
+          return instance.getOwnershipCount(watchId);
+        }).then(function(ownershipCount) {
+          console.log("ownership count");
+          for( o = 0; o < ownershipCount; o++){
+            (async () => {
+              var k = o;
+              App.contracts.ERC998TopDown.deployed().then( function(instance){
+                console. log("prev owner: " + k);
+                console.log("list: " + instance.getOwnershipsList(watchId, k));
+                return instance.getOwnershipsList(watchId, k);
+              }).then(function(ownerList){
+                console.log("ownership list inside");
+                var ownerAddress = ownerList[0];
+                var purchaseTime = ownerList[1];
+                var date = new Date(purchaseTime * 1000);
+                var hours = date.getHours();
+                var minutes = "0" + date.getMinutes();
+                var formattedTime = hours + ':' + minutes.substr(-2);
+                var purchasePrice = ownerList[2];
+                if(k >= 1){
+                  $('#traceInfoTable').append('<tr><td>' + ownerAddress + '</td><td>' + formattedTime + '</td><td>'+ purchasePrice +'</td></tr>');
+                }
+              });
+            })();
+          }
+        });
       });
-
-      // return instance.Ownership();
-      // }).then(function(ownership){
-      //   ownership
-      // })
-
-      //qui si può creare un ciclo per vedere la struttura di Ownership del contratto
-      var owner = "owner";
-      var time = "time";
-      var price= "price";
-      //si aggiunge poi alla tabella le righe con le informazioni
-      $('#traceInfoTable').append('<tr><td>' + owner + '</td><td>' + time + '</td><td>'+ price +'</td></tr>');
-      
-//       return instance.getOwnershipCount(watchId);
-//     }).then(function(ownershipCount){
-//       console.log("ownership count");
-//       for(o = 0; o <ownershipCount; o++){
-// //     (async () => {
-//       App.contracts.ERC998TopDown.deployed().then(function(instance){
-//         console.log("prev owner: " + o );
-//         return instance.getOwnershipCount(watchId, o);
-//       }).then(function(ownerList){
-//         var ownerAddress = ownerList[0];
-//         var purchaseTime = ownerList[1];
-//         var purchasePrice = ownerList[2];
-//         $('#traceInfoTable').append('<tr><td>' + ownerAddress + '</td><td>' + purchaseTime + '</td><td>'+ purchasePrice +'</td></tr>');
-//       });
-
-// //     })();
-        
-//       }
     });
+    })();
 
     //qui vado a caricare tutti i componenti dell'orologio
     (async() => {
@@ -261,16 +254,12 @@ App = {
           (async () => {
           var c = i;
           var componentTemplate = $('#componentTemplate');
-          //per ora non so come scorrere la lista degli index dei token figli, quindi visualizzo solo un figlio
-          //secondo me in questo punto andrebbe messo un for per indicare l'indice dei componenti
           App.contracts.SampleNFT.deployed().then(function(ins){
-            console.log("parseInt di ris[" + c + "] " + parseInt(ris[c]));
-            return ins.tokenURI(parseInt(ris[c]));
-            
+            return ins.tokenURI(parseInt(ris[c]));            
           }).then(function(child_tokenURI){
             $.getJSON(child_tokenURI, function(data){
               var Json = JSON.parse(data);
-              console.log(Json);
+              //console.log(Json);
               componentTemplate.find('#component-id').text(Json.ID);
               componentTemplate.find('#component-name').text(Json.Name);
               componentTemplate.find('#component-brand').text(Json.Brand);
@@ -313,13 +302,13 @@ App = {
             App.contracts.ERC998TopDown.deployed().then(function(instance) {
               return instance.isTokenSold(watch);
             }).then(function(isTokenSold) {
-              var example = isTokenSold;
-              example = true;
+              console.log("is token " + watch + " sold: " + isTokenSold);
+              //var example = isTokenSold;
+              //example = true;
               //nel caso in cui il token è stato venduto, disabilito il bottone con id relativo a quello dell'orologio
-              if(example){
-                var watchid=1; //sotto basta mettere watch
-                $(".buyDiv").find(`[data-buyid='${watchid}']`).text('Sold').attr('disabled', true);
-                $(".buyDivText").find(`[data-watchid='${watchid}']`).text("Watch is already sold");
+              if(isTokenSold){
+                $(".buyDiv").find(`[data-buyid='${watch}']`).text('Sold').attr('disabled', true);
+                $(".buyDivText").find(`[data-watchid='${watch}']`).text("Watch is already sold");
               }
             }).catch(function(err) {
               console.log(err.message);
@@ -334,19 +323,32 @@ App = {
 
   soldWatch: function(event){
     event.preventDefault();
-    var watchId = parseInt($(event.target).data('buyid')); //bisogna capire come passare l'id dell'orologio
+    var watchId = parseInt($(event.target).data('buyid'));
+    var watchPrice; //inizialmente lo settiamo a 0
+
     (async () => {
       await App.contracts.ERC998TopDown.deployed().then(function(instance){
-        console.log("account: " + App.account);
-        console.log("watchid to buy " + watchId);
-        return instance.buyToken(watchId, {from: App.account, value:web3.toWei(20,"ether")});
-      }).then(function(result){
-        return App.markSold();
-      }).catch(function(err) {
-        console.log(err.message);
-      });
-    })();
+        return instance.tokenURI(watchId);
+      }).then(function(tokenURI){
+        $.getJSON(tokenURI, function(data){
+          var Json = JSON.parse(data);
+          watchPrice = Json.Price;
+          console.log("watch price from json: " + watchPrice);
 
+          App.contracts.ERC998TopDown.deployed().then(function(instance){
+            console.log("account: " + App.account);
+            console.log("watchid to buy " + watchId);
+            console.log("watch price from json in before buying: " + watchPrice);
+            return instance.buyToken(watchId, {from: App.account, value:web3.toWei(watchPrice,"ether")});
+           }).then(function(result){
+           return App.markSold();
+          }).catch(function(err) {
+            console.log(err.message);
+          });
+        });
+      
+    });
+    })();
   }
 };
 
