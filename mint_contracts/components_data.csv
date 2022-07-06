@@ -1,19 +1,13 @@
 ID;Name;Brand;Manufacturer;Image;Date;Time;Material;Description;Father_ID
-1;Cinturino1;Marca;Manufacturer1;https://ipfs.infura.io/ipfs/QmSpxdVYwoDR7QSgwBTkHSWY9SJHdw8YFHijaCkWew7hWv;01/04/2022;11:30;Material1;Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,;1
-2;Cassa1;Marca;Manufacturer2;https://ipfs.infura.io/ipfs/QmSpxdVYwoDR7QSgwBTkHSWY9SJHdw8YFHijaCkWew7hWv;01/04/2022;11:35;Material2;Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,;1
-3;Quadrante1;Marca;Manufacturer3;https://ipfs.infura.io/ipfs/QmSpxdVYwoDR7QSgwBTkHSWY9SJHdw8YFHijaCkWew7hWv;01/04/2022;11:40;Material3;Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,;1
-4;Cinturino2;Marca;Manufacturer1;https://ipfs.infura.io/ipfs/QmSpxdVYwoDR7QSgwBTkHSWY9SJHdw8YFHijaCkWew7hWv;01/04/2022;11:30;Material1;Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,;2
-5;Cassa2;Marca;Manufacturer2;https://ipfs.infura.io/ipfs/QmSpxdVYwoDR7QSgwBTkHSWY9SJHdw8YFHijaCkWew7hWv;01/04/2022;11:35;Material2;Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,;2
-6;Quadrante2;Marca;Manufacturer3;https://ipfs.infura.io/ipfs/QmSpxdVYwoDR7QSgwBTkHSWY9SJHdw8YFHijaCkWew7hWv;01/04/2022;11:40;Material3;Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,;2
-7;Cinturino;Maserati;Manufacturer1;https://ipfs.infura.io/ipfs/QmSpxdVYwoDR7QSgwBTkHSWY9SJHdw8YFHijaCkWew7hWv;22/05/2021;12:30;Pelle blu;Pelle naturale, chiusura fibbia ardiglione;3
-8;Cassa;Maserati;Manufacturer2;https://ipfs.infura.io/ipfs/QmSpxdVYwoDR7QSgwBTkHSWY9SJHdw8YFHijaCkWew7hWv;22/04/2021;14:00;Acciaio;misura cassa: 48x42mm, spessore cassa: 10,9;3
-9;Quadrante;Maserati;Manufacturer3;https://ipfs.infura.io/ipfs/QmSpxdVYwoDR7QSgwBTkHSWY9SJHdw8YFHijaCkWew7hWv;20/06/2021;09:45;Vetro minerale;colore quadrante: blu sunray;3
-10;Cinturino;Omega;Manufacturer1;https://ipfs.infura.io/ipfs/QmSpxdVYwoDR7QSgwBTkHSWY9SJHdw8YFHijaCkWew7hWv;10/01/2020;14:00;Acciaio;cinturino intercambiabile, chiusura deployante;4
-11;Cassa;Omega;Manufacturer2;https://ipfs.infura.io/ipfs/QmSpxdVYwoDR7QSgwBTkHSWY9SJHdw8YFHijaCkWew7hWv;15/01/2020;17:00;Acciaio;misura cassa: 40,5mm;4
-12;Quadrante;Omega;Manufacturer3;https://ipfs.infura.io/ipfs/QmSpxdVYwoDR7QSgwBTkHSWY9SJHdw8YFHijaCkWew7hWv;17/01/2020;11:30;Vetro zaffiro;Vetro zaffiro resistente ai tagli con trattemento antiriflesso su entrambi i lati, colore quadrante: rosso;4
-13;Cinturino;Omega;Manufacturer1;https://ipfs.infura.io/ipfs/QmSpxdVYwoDR7QSgwBTkHSWY9SJHdw8YFHijaCkWew7hWv;15/06/2020;11:00;caucciù;chiusura fibbia ardiglione;5
-14;Cassa;Omega;Manufacturer2;https://ipfs.infura.io/ipfs/QmSpxdVYwoDR7QSgwBTkHSWY9SJHdw8YFHijaCkWew7hWv;13/06/2020;15:20;Acciaio;misura cassa: 42mm;5
-15;Quadrante;Omega;Manufacturer3;https://ipfs.infura.io/ipfs/QmSpxdVYwoDR7QSgwBTkHSWY9SJHdw8YFHijaCkWew7hWv;22/06/2020;15:45;Vetro zaffiro;Vetro zaffiro resistente ai graffi bombato con trattamento antiriflesso su entrambi i lati, colore quadrante: verde;5
-16;Cinturino;Rolex;Manufacturer1;https://ipfs.infura.io/ipfs/QmSpxdVYwoDR7QSgwBTkHSWY9SJHdw8YFHijaCkWew7hWv;25/04/2021;11:00;Acciaio;Oyster (3 file), elementi piatti. Chiusura deployante;6
-17;Cassa;Rolex;Manufacturer2;https://ipfs.infura.io/ipfs/QmSpxdVYwoDR7QSgwBTkHSWY9SJHdw8YFHijaCkWew7hWv;29/05/2021;14:30;Acciaio;Acciaio Oystersteel e oro giallo. misura cassa: 41mm;6
-18;Quadrante;Rolex;Manufacturer3;https://ipfs.infura.io/ipfs/QmSpxdVYwoDR7QSgwBTkHSWY9SJHdw8YFHijaCkWew7hWv;04/06/2021;17:45;Vetro zaffiro;colore quadrante: blue reale;6
+1;Cinturino;Maserati;Manufacturer1;https://ipfs.infura.io/ipfs/QmYQJgfxs1o5Cs9UfkBVsakDz9B1Cn9MidZL4CwGagYpgN;22/05/2021;12:30;Pelle blu;Pelle naturale, chiusura fibbia ardiglione;1
+2;Cassa;Maserati;Manufacturer2;https://ipfs.infura.io/ipfs/QmNTK4TTToPtf5djqsswAAyvSGhPa1uPzhYRWcdyXzeDF3;22/04/2021;14:00;Acciaio;misura cassa: 48x42mm, spessore cassa: 10,9;1
+3;Quadrante;Maserati;Manufacturer3;https://ipfs.infura.io/ipfs/QmSEeVWAmFD6vXX7343GfCdBuU7JbT5GDX95vnMLuSoXij;20/06/2021;09:45;Vetro minerale;colore quadrante: blu sunray;1
+4;Cinturino;Omega;Manufacturer1;https://ipfs.infura.io/ipfs/QmeeGFahEFegQ49K62ynkPMYqS7fuvgCK85cFmMrwUzwK2;10/01/2020;14:00;Pelle blu;cinturino intercambiabile, chiusura deployante;2
+5;Cassa;Omega;Manufacturer2;https://ipfs.infura.io/ipfs/QmPA4SwmNkvfvTSC55jdAocQgahL1D6ovVDkGS7TrnxsBK;15/01/2020;17:00;Acciaio;misura cassa: 40,5mm;2
+6;Quadrante;Omega;Manufacturer3;https://ipfs.infura.io/ipfs/QmV59YfK9o9LXXNyyadwZrBhF7d4zCi3FA8foUwnhNJokp;17/01/2020;11:30;Vetro zaffiro;Vetro zaffiro resistente ai tagli con trattemento antiriflesso su entrambi i lati, colore quadrante: blu;2
+7;Cinturino;Omega;Manufacturer1;https://ipfs.infura.io/ipfs/QmTScmghSh3B6bDS4XUu8NZ43PVRWnXy5Dao9cQAsWMLEx;15/06/2020;11:00;Acciaio;chiusura fibbia ardiglione;3
+8;Cassa;Omega;Manufacturer2;https://ipfs.infura.io/ipfs/QmWyW4AzeijJTcWkQuW8e2z6GqCmQ4Y4kx6HaWqnkhE7Zu;13/06/2020;15:20;Acciaio;misura cassa: 42mm;3
+9;Quadrante;Omega;Manufacturer3;https://ipfs.infura.io/ipfs/QmdnNocDkAam5Y3EqvCscphB3c4Ar653k89PtAYLdTCKmH;22/06/2020;15:45;Vetro zaffiro;Vetro zaffiro resistente ai graffi bombato con trattamento antiriflesso su entrambi i lati, colore quadrante: blu;3
+10;Cinturino;Rolex;Manufacturer1;https://ipfs.infura.io/ipfs/QmbJfnNQ1Uv69i2hwj23osdbAq6cCfq1k9Hw5bxRdSDgXD;25/04/2021;11:00;Acciaio;Oyster (3 file), elementi piatti. Chiusura deployante;4
+11;Cassa;Rolex;Manufacturer2;https://ipfs.infura.io/ipfs/QmZBYrANzvXXH6RF1DGezvZ3yM8wWNL5BwYc7qZbZbRRji;29/05/2021;14:30;Acciaio;Acciaio Oystersteel e oro giallo. misura cassa: 41mm;4
+12;Quadrante;Rolex;Manufacturer3;https://ipfs.infura.io/ipfs/QmXjxwgmziRP2onMvjvf4C9TfbsRetmPpwNGFCsbZv6u3V;04/06/2021;17:45;Vetro zaffiro;colore quadrante: nero;4
