@@ -2,7 +2,8 @@ App = {
   web3Provider: null,
   contracts: {},
   account: '0x0',
-  childContract: '0x91464C1EBC180675cDaBB8e22449D8d9E0A3Ffad',
+  childContract: '0x368e93c7aFCc26A40f694FD86586161FD2775D5F',
+  valOneEther: 1185.5,
   //prevWatchId : '0',
 
   init: async function() {
@@ -118,7 +119,8 @@ App = {
                     watchTemplate.find('#watch-image').attr('src', Json.Image);
                     watchTemplate.find('#watch-brand').text(Json.Brand);
                     watchTemplate.find('#watch-description').text(Json.Description);
-                    watchTemplate.find('#watch-price').text(Json.Price);
+                    var priceEuro = (parseInt(Json.Price) * App.valOneEther);
+                    watchTemplate.find('#watch-price').text("Price:  "+Json.Price+" Ether / "+priceEuro+" Euro");
                     watchTemplate.find('.btn-view').attr('data-viewid', watch);
                     watchTemplate.find('.btn-buy').attr('data-buyid', watch);
                     
@@ -260,7 +262,7 @@ App = {
             $.getJSON(child_tokenURI, function(data){
               var Json = JSON.parse(data);
               //console.log(Json);
-              componentTemplate.find('#component-id').text(Json.ID);
+              //componentTemplate.find('#component-id').text(Json.ID);
               componentTemplate.find('#component-name').text(Json.Name);
               componentTemplate.find('#component-brand').text(Json.Brand);
               componentTemplate.find('#component-manufacturer').text(Json.Manufacturer);

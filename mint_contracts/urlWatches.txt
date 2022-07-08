@@ -1,6 +1,4 @@
-1,https://ipfs.infura.io/ipfs/QmVQUhY8E8rvrQbjoCuEyZAQ4fJNcNsUffDTAoisK8bZ9c,20
-2,https://ipfs.infura.io/ipfs/QmYwk35X5pqyqoZnpz4ZEcGACoeNLCZFakhxTb37noSHZd,40
-3,https://ipfs.infura.io/ipfs/QmSePkoPsKbQwoabT6Xwa1zzAWZioRnhVTzZxhSjhjEsH9,30
-4,https://ipfs.infura.io/ipfs/QmNdheLwp1hwBxoxsTSJEKrP1J4AY5A2jdFGfpUaCPfNTp,35
-5,https://ipfs.infura.io/ipfs/QmYTtxnzWr1YS6VXvtquL4G4vgcN3XL558myjUe8XtrXfn,54
-6,https://ipfs.infura.io/ipfs/QmXFNHUhCwib47pkwGw4eK3MrwWoWhFKrVLXWHCw61ujBX,65
+1,https://ipfs.infura.io/ipfs/QmQwa9RN3mQJfHcF3b1yvFQutwMgoJKMdjyYfBBNPA2Dtz,1
+2,https://ipfs.infura.io/ipfs/QmbPZ9CUoJ5Tw7gtB6SbHZSkekB8Sd4XweBtw6Z6kMqxNK,8
+3,https://ipfs.infura.io/ipfs/QmPBkyx1PhffEMFEaRusrD8kHLqodQpTYKdt5Con1snCr7,5
+4,https://ipfs.infura.io/ipfs/QmezHzy2L2hw5Gco5MB5CDWWoJrTD6rPvpAwQRet6XzX5G,17
