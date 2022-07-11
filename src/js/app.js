@@ -109,7 +109,7 @@ App = {
             (async () => {
             var watchTemplate = $('#watchTemplate');
             var watch = i;
-              App.contracts.ERC998TopDown.deployed().then(function(instance){
+            await App.contracts.ERC998TopDown.deployed().then(function(instance){
                 return instance.tokenURI(watch);
               }).then(function(tokenURI){
                 $.getJSON(tokenURI, function(data) {
@@ -123,13 +123,16 @@ App = {
                     watchTemplate.find('#watch-price').text("Price:  "+Json.Price+" Ether / "+priceEuro+" Euro");
                     watchTemplate.find('.btn-view').attr('data-viewid', watch);
                     watchTemplate.find('.btn-buy').attr('data-buyid', watch);
+
                     
-                    //console.log("a - " +attached);
                     watchesRow.append(watchTemplate.html());
+                    //console.log("a - " +attached);
                     //watchTemplate.empty();
 
                 }); //Json read
               });
+
+            
             $('#loader').hide();
           })();
           }
@@ -288,7 +291,7 @@ App = {
   },
 
   bindEvents: function(){
-    $(document).on('click', ".btn-buy", App.soldWatch);
+    $(document).on('click', ".btn-buy", App.sellWatch);
     //$(document).on('click', '#btn-view', this);
   },
 
@@ -323,7 +326,7 @@ App = {
     //console.log("watch sold to account " + App.account);
   },
 
-  soldWatch: function(event){
+  sellWatch: function(event){
     event.preventDefault();
     var watchId = parseInt($(event.target).data('buyid'));
     var watchPrice; //inizialmente lo settiamo a 0
