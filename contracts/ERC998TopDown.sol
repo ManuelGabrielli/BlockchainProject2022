@@ -303,7 +303,13 @@ contract ERC998TopDown is ERC721, ERC998ERC721TopDown, ERC998ERC721TopDownEnumer
         //require amount of ether
         require(msg.value > tokenPrices[_tokenId], "Not enough ether send");
 
+        require(_to != tokenIdToTokenOwner[_tokenId], "The owner already own the token");
+
+        address payable oldOwner = payable(tokenIdToTokenOwner[_tokenId]);
+
         safeTransferFrom(tokenIdToTokenOwner[_tokenId], _to, _tokenId);
+
+        oldOwner.transfer(msg.value);
 
         //set token as sold
         soldTokensId[_tokenId] = true;

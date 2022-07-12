@@ -2,7 +2,7 @@ App = {
   web3Provider: null,
   contracts: {},
   account: '0x0',
-  childContract: '0x368e93c7aFCc26A40f694FD86586161FD2775D5F',
+  childContract: '0x22b574ca3E559cAD4d444425b8332bC96EfbEF7F',
   valOneEther: 1185.5,
   //prevWatchId : '0',
 
@@ -76,7 +76,6 @@ App = {
             App.account = accounts[0];
             
             $("#accountAddress").html("Your Account: " + App.account);
-            $('#showWatchId').html("Watch ID " + localStorage.getItem('myId'));
             //pass to href personal area the account address
             // document.getElementById("personal_area").onclick = function(){
               
@@ -84,7 +83,8 @@ App = {
             App.homepageLoad();
             App.personalAreaLoad();
             App.componentLoad();
-            App.markSold();
+            
+            
             //App.saveId();
             //App.getPersonalId();
             
@@ -130,13 +130,15 @@ App = {
 
                 }); //Json read
               });
-            $('#loader').hide();
-          })();
+              
+              $('#loader').hide();
+            })();
           }
-
-        });
+        }).then(function(){
+          App.markSold();
+        });;
       })();
-        
+      
   },
 
   personalAreaLoad : function(){
@@ -216,13 +218,12 @@ App = {
         App.contracts.ERC998TopDown.deployed().then(function(instance){
           return instance.getOwnershipCount(watchId);
         }).then(function(ownershipCount) {
-          console.log("ownership count");
+          console.log("ownership count: "+ ownershipCount);
           for( o = 0; o < ownershipCount; o++){
             (async () => {
               var k = o;
               App.contracts.ERC998TopDown.deployed().then( function(instance){
                 console. log("prev owner: " + k);
-                console.log("list: " + instance.getOwnershipsList(watchId, k));
                 return instance.getOwnershipsList(watchId, k);
               }).then(function(ownerList){
                 console.log("ownership list inside");
@@ -278,13 +279,13 @@ App = {
           }); //childTokenURI
         })();
         } //for
-      });
+      }).then(function(){
+        App.markSold();
+      });;
       $('#watch-info-button').find('.btn-buy').attr('data-buyid', watchId);
       $('.buyDivText > p').attr('data-watchid', watchId);
-      //$('#watch-info-button').find('button').text('Sold').attr('disabled', true);
+      
     })();
-    
-    //localStorage.clear();
   },
 
   bindEvents: function(){

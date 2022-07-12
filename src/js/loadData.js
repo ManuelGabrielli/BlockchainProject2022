@@ -63,11 +63,6 @@ render: function() {
 
 //called from the html
 load: function(watches, components) {
-
-  console.log(JSON.stringify(watches))
-  console.log(JSON.stringify(components))
-  console.log(LoadData.account)
-
   var p_correct = $("#correct");
   var p_not_correct = $("#notCorrect");
 
