@@ -34,33 +34,31 @@
     <div id="single-watch-info">
     <div class="row py-lg-5">
       <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="pageTitle">WATCH INFORMATION</h1>
-        <p class="lead text-muted">Here you can find all the information regarding the production of the individual components and the traceability of the watch.</p>
-        <p id="showWatchId"></p>
-        <p id="accountAddress"></p>
-        <table id="watchInfoTable">
-          <tr>
-            <th>ID</th>
-            <th>NAME</th>
-            <th>BRAND</th>
-            <th>PRICE</th>
-          </tr>
-          <tr>
-            <td id="single-watch-id"></td>
-            <td id="single-watch-name"></td>
-            <td id="single-watch-brand"></td>
-            <td id="single-watch-price"></td>
-          </tr>
-        </table>
-
-          <table id="traceInfoTable">
-            <tr>
-              <th>LAST OWNER</th>
-              <th>BUY TIME</th>
-              <th>PRICE</th>
-            </tr>
-          </table>
+        <h1 class="pageTitle meta">WATCH INFORMATION</h1>
+        <p class="lead text-muted meta">Here you can find all the information regarding the production of the individual components and the traceability of the watch.</p>
+        <p id="accountAddress meta"></p>
       </div>
+      <table id="watchInfoTable" class="table_watch">
+        <tr>
+          <th id="th_name">NAME</th>
+          <th id="th_brand">BRAND</th>
+          <th id="th_price">PRICE</th>
+        </tr>
+        <tr>
+          <td id="single-watch-name"></td>
+          <td id="single-watch-brand"></td>
+          <td id="single-watch-price"></td>
+        </tr>
+      </table>
+
+      <table id="traceInfoTable" class="table_watch">
+        <tr>
+          <th>OWNERS LIST</th>
+          <th>BUY DATE</th>
+          <th>BUY TIME</th>
+          <th>PRICE</th>
+        </tr>
+      </table>
     </div>
   </div>
   </section>

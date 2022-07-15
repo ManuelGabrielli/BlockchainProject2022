@@ -2,7 +2,7 @@ App = {
   web3Provider: null,
   contracts: {},
   account: '0x0',
-  childContract: '0x22b574ca3E559cAD4d444425b8332bC96EfbEF7F',
+  childContract: '0xf699262ADB30929750869d56B7A3A6E22ad3DD61',
   valOneEther: 1185.5,
   //prevWatchId : '0',
 
@@ -209,7 +209,6 @@ App = {
       //console.log('scrittura su pagina da json');
       $.getJSON(tokenURI, function(data) {
         var Json = JSON.parse(data);
-        $('#watchInfoTable').find('#single-watch-id').html(watchId);
         $('#watchInfoTable').find('#single-watch-name').html(Json.Name);
         $('#watchInfoTable').find('#single-watch-brand').html(Json.Brand);
         $('#watchInfoTable').find('#single-watch-price').html(Json.Price);
@@ -219,26 +218,32 @@ App = {
           return instance.getOwnershipCount(watchId);
         }).then(function(ownershipCount) {
           console.log("ownership count: "+ ownershipCount);
-          for( o = 0; o < ownershipCount; o++){
-            (async () => {
-              var k = o;
-              App.contracts.ERC998TopDown.deployed().then( function(instance){
-                console. log("prev owner: " + k);
-                return instance.getOwnershipsList(watchId, k);
-              }).then(function(ownerList){
-                console.log("ownership list inside");
-                var ownerAddress = ownerList[0];
-                var purchaseTime = ownerList[1];
-                var date = new Date(purchaseTime * 1000);
-                var hours = date.getHours();
-                var minutes = "0" + date.getMinutes();
-                var formattedTime = hours + ':' + minutes.substr(-2);
-                var purchasePrice = ownerList[2];
-                if(k >= 1){
-                  $('#traceInfoTable').append('<tr><td>' + ownerAddress + '</td><td>' + formattedTime + '</td><td>'+ purchasePrice +'</td></tr>');
-                }
-              });
-            })();
+
+          if(ownershipCount == 1){
+            $('#traceInfoTable').append('<tr><td>-</td><td>-</td><td>-</td><td>-</td></tr>');
+          }
+          else{
+            for( o = 0; o < ownershipCount; o++){
+              (async () => {
+                var k = o;
+                App.contracts.ERC998TopDown.deployed().then( function(instance){
+                  console. log("prev owner: " + k);
+                  return instance.getOwnershipsList(watchId, k);
+                }).then(function(ownerList){
+                  var ownerAddress = ownerList[0];
+                  var purchaseTime = ownerList[1];
+                  var date = new Date(purchaseTime * 1000);
+                  var fullDate = ""+date.getDate()+"-"+date.getMonth()+"-"+date.getFullYear();
+                  var hours = date.getHours();
+                  var minutes = "0" + date.getMinutes();
+                  var formattedTime = hours + ':' + minutes.substr(-2);
+                  var purchasePrice = ownerList[2];
+                  //if(k >= 1){
+                    $('#traceInfoTable').append('<tr><td>' + ownerAddress + '</td><td>' + fullDate + '</td><td>' + formattedTime + '</td><td>'+ purchasePrice +'</td></tr>');
+                  //}
+                });
+              })();
+            }
           }
         });
       });
