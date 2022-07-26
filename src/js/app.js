@@ -173,7 +173,8 @@ App = {
                       personalTemplate.find('#personal-watch-image').attr('src', Json.Image);
                       personalTemplate.find('#personal-watch-brand').text(Json.Brand);
                       personalTemplate.find('#personal-watch-description').text(Json.Description);
-                      personalTemplate.find('#personal-watch-price').text(Json.Price);
+                      var priceEuro = (parseInt(Json.Price) * App.valOneEther);
+                      personalTemplate.find('#personal-watch-price').text("Price:  "+Json.Price+" Ether / "+priceEuro+" Euro");
                       personalTemplate.find('.btn-view').attr('data-viewid', watch);                        
                       //console.log("a - " +attached);
                       personalRow.append(personalTemplate.html());
